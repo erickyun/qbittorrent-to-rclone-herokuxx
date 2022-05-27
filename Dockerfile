@@ -8,7 +8,13 @@ FROM ubuntu:22.04
 #RUN apt install rclone -y
 RUN apt-get -y update && apt update -qq -y && apt-get install software-properties-common -y && yes "" | add-apt-repository -y ppa:poplite/qbittorrent-enhanced && apt-get install qbittorrent-enhanced-nox -qq -y
 RUN apt-get install -y curl unzip
-RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip
+
+RUN curl -O 'https://raw.githubusercontent.com/developeranaz/Rclone-olderversion-Backup/main/rclone-current-linux-amd64.zip' && \
+    unzip rclone-current-linux-amd64.zip && \
+    cp /rclone-*-linux-amd64/rclone /usr/bin/ && \
+    chown root:root /usr/bin/rclone && \
+    chmod 755 /usr/bin/rclone
+    
 RUN apt install supervisor -y
 COPY scriptplusconf /scriptplusconf
 COPY qBconf.tar.gz /qBconf.tar.gz
