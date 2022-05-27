@@ -7,7 +7,7 @@ FROM ubuntu:22.04
 #curl -y
 #RUN apt install rclone -y
 RUN apt-get -y update && apt update -qq -y && apt-get install software-properties-common -y && yes "" | add-apt-repository -y ppa:poplite/qbittorrent-enhanced && apt-get install qbittorrent-enhanced-nox -qq -y
-RUN apt-get install -y curl
+RUN apt-get install -y curl unzip
 RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip
 RUN apt install supervisor -y
 COPY scriptplusconf /scriptplusconf
