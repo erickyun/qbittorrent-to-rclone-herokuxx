@@ -1,5 +1,5 @@
-FROM ubuntu:22.04
-#FROM developeranaz/qbittorrent2rclone:beta1
+#FROM ubuntu:22.04
+FROM developeranaz/qbittorrent2rclone:beta1
 #FROM developeranaz/qbittorrent-rclone-heroku
 #RUN apt update 
 #RUN apt install unzip 
@@ -11,8 +11,8 @@ RUN apt-get install -y curl unzip
 RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip
 RUN apt install supervisor -y
 COPY scriptplusconf /scriptplusconf
-#COPY qBconf.tar.gz /qBconf.tar.gz
-#RUN tar xvf /qBconf.tar.gz
+COPY qBconf.tar.gz /qBconf.tar.gz
+RUN tar xvf /qBconf.tar.gz
 RUN chmod +x /scriptplusconf/entrypoint2.sh
 RUN chmod +x /scriptplusconf/entrypoint1.sh
 CMD /scriptplusconf/entrypoint2.sh
